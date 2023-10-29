@@ -50,3 +50,10 @@ function viewAllEmployees() {
 		console.table(results);
 	});
 }
+
+// Exporting functions to be used in index.js
+module.exports = {
+	viewAllDepartments: viewAllDepartments,
+	viewAllEmployees: viewAllEmployees,
+	viewAllRoles: viewAllRoles,
+};
