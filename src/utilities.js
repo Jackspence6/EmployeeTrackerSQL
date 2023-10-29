@@ -1,3 +1,4 @@
+// Function to displayScaledText
 export function displayScaledText(text, scale) {
 	let scaledText = "";
 	for (let char of text) {
@@ -6,6 +7,7 @@ export function displayScaledText(text, scale) {
 	return scaledText;
 }
 
+// function to displayEmployeeManager Text with Border
 export function displayEmployeeManager() {
 	const scale = 2;
 	const length = 60;
