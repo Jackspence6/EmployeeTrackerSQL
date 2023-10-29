@@ -161,6 +161,11 @@ async function addRole() {
 	}
 }
 
+// Function to add a new employee into employee table
+function addEmployee() {
+	
+}
+
 // Exporting functions to be used in index.js
 module.exports = {
 	viewAllDepartments: viewAllDepartments,
