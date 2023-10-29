@@ -27,6 +27,7 @@ function viewAllDepartments() {
 		} else {
 			console.table(results);
 		}
+		// Closing SQL connection
 		db.end();
 	});
 }
@@ -40,6 +41,7 @@ function viewAllRoles() {
 		} else {
 			console.table(results);
 		}
+		// Closing SQL connection
 		db.end();
 	});
 }
@@ -53,6 +55,7 @@ function viewAllEmployees() {
 		} else {
 			console.table(results);
 		}
+		// Closing SQL connection
 		db.end();
 	});
 }
