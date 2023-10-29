@@ -1,31 +1,44 @@
 // Imports
-import mysql from "./src/mysql-wrapper.cjs";
-import { displayEmployeeManager } from "./src/utilities.js";
-import { prompt } from "./src/prompt.js";
-import { Connection } from "mysql2/typings/mysql/lib/Connection.js";
+// const mysql = require("mysql2");
+const inquirer = require("inquirer");
+const utilities = require("./src/utilities.js");
+const promptModule = require("./src/prompt.js");
+// const Connection = require("mysql2/typings/mysql/lib/Connection.js");
 
-// Open SQL Connection
-async function openDbConnection() {
-	console.log("Opening DataBase Connection!");
+// Global constants & variables
+const choiceMenu = promptModule.choiceMenu;
+const displayEmployeeManager = utilities.displayEmployeeManager;
 
-	const connection = mysql.createConnection({
-		host: "localhost",
-		user: "root",
-		password: "Jackspence@6",
-		database: "employee_db",
-	});
-	return connection;
-}
+// // Open SQL Connection
+// function openDbConnection() {
+// 	console.log("Opening DataBase Connection...");
 
-// Close SQL Connection
-async function closeDbConnection() {
-	await Connection.end();
-}
+// 	const connection = mysql.createConnection({
+// 		host: "localhost",
+// 		user: "root",
+// 		password: "Jackspence@6",
+// 		database: "employee_db",
+// 	});
+// 	return connection;
+// 	console.log("Connected to the employee_db DataBase!");
+// }
+
+// // Close SQL Connection
+// function closeDbConnection() {
+// 	Connection.end();
+// }
 
 // Main function for Application
 function main() {
 	displayEmployeeManager();
-	prompt();
+	inquirer
+		.prompt(choiceMenu)
+		.then(function (answers) {
+			console.log(answers);
+		})
+		.catch(function (err) {
+			console.error(err);
+		});
 }
 
 // Calling the Main application function to start the app

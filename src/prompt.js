@@ -1,5 +1,4 @@
-// Importing inquirer package for CLI prompting
-import inquirer from "inquirer";
+// Imports
 
 // Initial Questions
 const choiceMenu = [
@@ -19,17 +18,6 @@ const choiceMenu = [
 	},
 ];
 
-// Function to prompt users in CLI
-function userPrompt() {
-	inquirer
-		.prompt(choiceMenu)
-		.then((answers) => {
-			console.log(answers);
-		})
-		.catch((err) => console.error(err));
-}
-
-// Exporting the main function to prompt users in CLI
-export function prompt() {
-	userPrompt();
-}
+module.exports = {
+	choiceMenu: choiceMenu,
+};

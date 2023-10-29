@@ -1,5 +1,5 @@
 // Function to displayScaledText
-export function displayScaledText(text, scale) {
+function displayScaledText(text, scale) {
 	let scaledText = "";
 	for (let char of text) {
 		scaledText += char + " ".repeat(scale - 1);
@@ -8,7 +8,7 @@ export function displayScaledText(text, scale) {
 }
 
 // function to displayEmployeeManager Text with Border
-export function displayEmployeeManager() {
+function displayEmployeeManager() {
 	const scale = 2;
 	const length = 60;
 
@@ -36,3 +36,9 @@ export function displayEmployeeManager() {
 	}
 	console.log(border);
 }
+
+// Exporting functions to be used in index.js
+module.exports = {
+	displayScaledText: displayScaledText,
+	displayEmployeeManager: displayEmployeeManager,
+};
