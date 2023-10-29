@@ -18,15 +18,37 @@ const choiceMenu = [
 	},
 ];
 
+// Add a new Department question
 const addDepartmentQuestion = [
 	{
 		name: "departmentName",
 		type: "input",
-		message: "Please enter the new department name:",
+		message: "Please enter the new department's name:",
 	},
 ];
 
+// Add a new Role question
+const addRoleQuestions = [
+	{
+		name: "roleName",
+		type: "input",
+		message: "Please enter the new role's name:",
+	},
+	{
+		name: "roleSalary",
+		type: "input",
+		message: "Please enter the new role's salary:",
+	},
+	{
+		name: "roleDepartment",
+		type: "input",
+		message: "Please enter the new role's department:",
+	},
+];
+
+// Exports
 module.exports = {
 	choiceMenu: choiceMenu,
 	addDepartmentQuestion: addDepartmentQuestion,
+	addRoleQuestions: addRoleQuestions,
 };
