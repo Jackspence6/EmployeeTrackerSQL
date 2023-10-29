@@ -28,3 +28,14 @@ function viewAllDepartments() {
 		console.table(results);
 	});
 }
+
+// Function to display job title, role id, the department that role belongs to, and the salary for that role
+function viewAllRoles() {
+	db.query("SELECT * FROM role", (err, results) => {
+		if (err) {
+			console.error("Error fetching data:", err);
+			return;
+		}
+		console.table(results);
+	});
+}
