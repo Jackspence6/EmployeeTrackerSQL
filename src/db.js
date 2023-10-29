@@ -65,13 +65,31 @@ function viewAllEmployees() {
 	});
 }
 
+// Function to add a new department into department table
 function addDepartment() {
+	// Prompting user for new dept name in CLI
 	inquirer
 		.prompt(addDepartmentQuestion)
 		.then((result) => {
-			console.log(result);
+			// Assigning user input to variable
 			var newDept = result.departmentName;
-			console.log(newDept);
+
+			// Inserting new department into database
+			db.query(
+				"INSERT INTO department (name) VALUES (?)",
+				[newDept],
+				(err, results) => {
+					if (err) {
+						console.error("Error fetching data:", err);
+						return;
+					} else {
+						console.log("Successfully added new department");
+						console.table(results);
+					}
+					// Closing SQL connection
+					db.end();
+				}
+			);
 		})
 		.catch((err) => {
 			console.error(err);
