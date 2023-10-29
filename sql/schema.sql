@@ -9,7 +9,7 @@ USE employee_db;
 
 /* Creating a department table in the employee database  */
 CREATE TABLE department (
-    id INT NOT NULL,
+    id INT NOT NULL PRIMARY KEY,
     name VARCHAR(30) NOT NULL
 );
 
@@ -18,7 +18,8 @@ CREATE TABLE role (
     id INT NOT NULL,
     title VARCHAR(30) NOT NULL,
     salary DECIMAL(10, 2) NOT NULL,
-    department_id INT NOT NULL
+    department_id INT NOT NULL,
+    FOREIGN KEY (department_id) REFERENCES department(id)
 );
 
 /* Creating an employee table in the employee database  */
