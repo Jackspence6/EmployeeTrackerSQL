@@ -18,6 +18,15 @@ const choiceMenu = [
 	},
 ];
 
+const addDepartmentQuestion = [
+	{
+		name: "departmentName",
+		type: "input",
+		message: "Please enter the new department name:",
+	},
+];
+
 module.exports = {
 	choiceMenu: choiceMenu,
+	addDepartmentQuestion: addDepartmentQuestion,
 };

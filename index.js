@@ -10,6 +10,7 @@ const displayEmployeeManager = utilities.displayEmployeeManager;
 const viewAllDepartments = dbQueries.viewAllDepartments;
 const viewAllEmployees = dbQueries.viewAllEmployees;
 const viewAllRoles = dbQueries.viewAllRoles;
+const addDepartment = dbQueries.addDepartment;
 
 // Main function for Application
 function main() {
@@ -28,6 +29,7 @@ function main() {
 					viewAllEmployees();
 					break;
 				case "Add a Department":
+					addDepartment();
 					break;
 				case "Add a Role":
 					break;
