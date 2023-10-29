@@ -33,10 +33,25 @@ function main() {
 	displayEmployeeManager();
 	inquirer
 		.prompt(choiceMenu)
-		.then(function (answers) {
-			console.log(answers);
+		.then((answers) => {
+			switch (answers) {
+				case "View all Departments":
+					break;
+				case "View all Roles":
+					break;
+				case "View all Employees":
+					break;
+				case "Add a Department":
+					break;
+				case "Add a Role":
+					break;
+				case "Add an Employee":
+					break;
+				case "Update an Employee Role":
+					break;
+			}
 		})
-		.catch(function (err) {
+		.catch((err) => {
 			console.error(err);
 		});
 }
