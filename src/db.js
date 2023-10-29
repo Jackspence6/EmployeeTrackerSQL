@@ -24,8 +24,10 @@ function viewAllDepartments() {
 		if (err) {
 			console.error("Error fetching data:", err);
 			return;
+		} else {
+			console.table(results);
 		}
-		console.table(results);
+		db.end();
 	});
 }
 
@@ -35,8 +37,10 @@ function viewAllRoles() {
 		if (err) {
 			console.error("Error fetching data:", err);
 			return;
+		} else {
+			console.table(results);
 		}
-		console.table(results);
+		db.end();
 	});
 }
 
@@ -46,8 +50,10 @@ function viewAllEmployees() {
 		if (err) {
 			console.error("Error fetching data:", err);
 			return;
+		} else {
+			console.table(results);
 		}
-		console.table(results);
+		db.end();
 	});
 }
 
