@@ -39,3 +39,14 @@ function viewAllRoles() {
 		console.table(results);
 	});
 }
+
+// Function to display all employee data
+function viewAllEmployees() {
+	db.query("SELECT * FROM employee", (err, results) => {
+		if (err) {
+			console.error("Error fetching data:", err);
+			return;
+		}
+		console.table(results);
+	});
+}
