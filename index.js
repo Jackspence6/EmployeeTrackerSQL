@@ -11,6 +11,7 @@ const viewAllDepartments = dbQueries.viewAllDepartments;
 const viewAllEmployees = dbQueries.viewAllEmployees;
 const viewAllRoles = dbQueries.viewAllRoles;
 const addDepartment = dbQueries.addDepartment;
+const addRole = dbQueries.addRole;
 
 // Main function for Application
 function main() {
@@ -32,6 +33,7 @@ function main() {
 					addDepartment();
 					break;
 				case "Add a Role":
+					addRole();
 					break;
 				case "Add an Employee":
 					break;

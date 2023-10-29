@@ -27,28 +27,8 @@ const addDepartmentQuestion = [
 	},
 ];
 
-// Add a new Role question
-const addRoleQuestions = [
-	{
-		name: "roleName",
-		type: "input",
-		message: "Please enter the new role's name:",
-	},
-	{
-		name: "roleSalary",
-		type: "input",
-		message: "Please enter the new role's salary:",
-	},
-	{
-		name: "roleDepartment",
-		type: "input",
-		message: "Please enter the new role's department:",
-	},
-];
-
 // Exports
 module.exports = {
 	choiceMenu: choiceMenu,
 	addDepartmentQuestion: addDepartmentQuestion,
-	addRoleQuestions: addRoleQuestions,
 };

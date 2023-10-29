@@ -83,7 +83,7 @@ function addDepartment() {
 						console.error("Error fetching data:", err);
 						return;
 					} else {
-						console.log("Successfully added new department");
+						console.log("Successfully added new department!");
 						console.table(results);
 					}
 					// Closing SQL connection
@@ -96,10 +96,76 @@ function addDepartment() {
 		});
 }
 
+// Function to fetch departments from the database
+function fetchDepartments() {
+	return new Promise((resolve, reject) => {
+		db.query("SELECT id, name FROM department", (err, results) => {
+			if (err) reject(err);
+			else resolve(results);
+		});
+	});
+}
+
+// Function to add a new role into role table
+async function addRole() {
+	try {
+		// Fetching departments
+		const departments = await fetchDepartments();
+
+		// Preparing choices for Inquirer
+		const departmentChoices = departments.map((dept) => ({
+			name: dept.name,
+			value: dept.id,
+		}));
+
+		// Add a new Role questions
+		const addRoleQuestions = [
+			{
+				name: "roleName",
+				type: "input",
+				message: "Please enter the new role's name:",
+			},
+			{
+				name: "roleSalary",
+				type: "input",
+				message: "Please enter the new role's salary:",
+			},
+			{
+				name: "departmentId",
+				type: "list",
+				message: "Please select the new role's department:",
+				choices: departmentChoices,
+			},
+		];
+
+		// Prompting the user
+		const answers = await inquirer.prompt(addRoleQuestions);
+
+		// Inserting the new role
+		const { roleName, roleSalary, departmentId } = answers;
+
+		db.query(
+			"INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)",
+			[roleName, roleSalary, departmentId],
+			(err, results) => {
+				if (err) {
+					console.error("Error:", err);
+					return;
+				}
+				console.log("Successfully added new role!");
+				db.end();
+			}
+		);
+	} catch (err) {
+		console.error("Error:", err);
+	}
+}
+
 // Exporting functions to be used in index.js
 module.exports = {
 	viewAllDepartments: viewAllDepartments,
 	viewAllEmployees: viewAllEmployees,
 	viewAllRoles: viewAllRoles,
 	addDepartment: addDepartment,
+	addRole: addRole,
 };
