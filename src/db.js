@@ -173,8 +173,17 @@ function fetchRoles() {
 }
 
 // Function to add a new employee into employee table
-function addEmployee() {
+async function addEmployee() {
 	try {
+		// Fetching roles
+		const roles = await fetchRoles();
+
+		// Preparing choices for Inquirer
+		const roleChoices = roles.map((role) => ({
+			title: role.title,
+			value: role.id,
+		}));
+
 		// Prompting user for new employee details
 		inquirer.prompt(addEmployeeQuestions).then((result) => {
 			const employeeFirstName = result.employeeFirstName;
