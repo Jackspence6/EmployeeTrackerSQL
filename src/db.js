@@ -164,30 +164,34 @@ async function addRole() {
 
 // Function to add a new employee into employee table
 function addEmployee() {
-	// Prompting user for new employee details
-	inquirer.prompt(addEmployeeQuestions).then((result) => {
-		const employeeFirstName = result.employeeFirstName;
-		const employeeLastName = result.employeeLastName;
-		const employeeRole = result.employeeRole;
-		const employeeManagerId = result.employeeManagerId;
+	try {
+		// Prompting user for new employee details
+		inquirer.prompt(addEmployeeQuestions).then((result) => {
+			const employeeFirstName = result.employeeFirstName;
+			const employeeLastName = result.employeeLastName;
+			const employeeRole = result.employeeRole;
+			const employeeManagerId = result.employeeManagerId;
 
-		// Inserting new employee details into database
-		db.query(
-			"INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)",
-			[employeeFirstName, employeeLastName, employeeRole, employeeManagerId],
-			(err, results) => {
-				if (err) {
-					console.error("Error fetching data:", err);
-					return;
-				} else {
-					console.log("Successfully added new employee!");
-					console.table(results);
+			// Inserting new employee details into database
+			db.query(
+				"INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)",
+				[employeeFirstName, employeeLastName, employeeRole, employeeManagerId],
+				(err, results) => {
+					if (err) {
+						console.error("Error fetching data:", err);
+						return;
+					} else {
+						console.log("Successfully added new employee!");
+						console.table(results);
+					}
+					// Closing SQL connection
+					db.end();
 				}
-				// Closing SQL connection
-				db.end();
-			}
-		);
-	});
+			);
+		});
+	} catch (err) {
+		console.error(err);
+	}
 }
 
 // Exporting functions to be used in index.js
