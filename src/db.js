@@ -326,4 +326,5 @@ module.exports = {
 	addDepartment: addDepartment,
 	addRole: addRole,
 	addEmployee: addEmployee,
+	updateEmployeeRole: updateEmployeeRole,
 };

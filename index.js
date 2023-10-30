@@ -13,6 +13,7 @@ const viewAllRoles = dbQueries.viewAllRoles;
 const addDepartment = dbQueries.addDepartment;
 const addRole = dbQueries.addRole;
 const addEmployee = dbQueries.addEmployee;
+const updateEmployeeRole = dbQueries.updateEmployeeRole;
 
 // Main function for Application
 function main() {
@@ -40,6 +41,7 @@ function main() {
 					addEmployee();
 					break;
 				case "Update an Employee Role":
+					updateEmployeeRole();
 					break;
 			}
 		})
