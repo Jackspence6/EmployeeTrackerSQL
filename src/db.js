@@ -179,7 +179,7 @@ async function addEmployee() {
 
 		// Preparing choices for Inquirer
 		const roleChoices = roles.map((role) => ({
-			title: role.title,
+			name: role.title,
 			value: role.id,
 		}));
 
@@ -198,7 +198,8 @@ async function addEmployee() {
 			{
 				name: "employeeRoleId",
 				type: "list",
-				message: roleChoices,
+				message: "Please select the new employee's role:",
+				choices: roleChoices,
 			},
 			{
 				name: "employeeManagerId",
