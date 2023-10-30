@@ -206,7 +206,7 @@ async function addEmployee() {
 				message: "Please enter the manager's ID for the new employee:",
 			},
 		];
-		
+
 		// Prompting user for new employee detail
 		const answers = await inquirer.prompt(addEmployeeQuestions);
 
@@ -217,27 +217,27 @@ async function addEmployee() {
 			employeeRoleId,
 			employeeManagerId,
 		} = answers;
-		
-			// Inserting new employee details into database
-			db.query(
-				"INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)",
-				[employeeFirstName, employeeLastName, employeeRoleId, employeeManagerId],
-				(err, results) => {
-					if (err) {
-						console.error("Error fetching data:", err);
-						return;
-					} else {
-						console.log("Successfully added new employee!");
-						console.table(results);
-					}
-					// Closing SQL connection
-					db.end();
+
+		// Inserting new employee details into database
+		db.query(
+			"INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)",
+			[employeeFirstName, employeeLastName, employeeRoleId, employeeManagerId],
+			(err, results) => {
+				if (err) {
+					console.error("Error fetching data:", err);
+					return;
+				} else {
+					console.log("Successfully added new employee!");
+					console.table(results);
 				}
-			);
+				// Closing SQL connection
+				db.end();
+			}
+		);
 	} catch (err) {
 		console.error(err);
 	}
-
+}
 
 // Exporting functions to be used in index.js
 module.exports = {
