@@ -5,7 +5,6 @@ const promptModule = require("./prompt.js");
 
 // Global constants & variables
 const addDepartmentQuestion = promptModule.addDepartmentQuestion;
-const addEmployeeQuestions = promptModule.addEmployeeQuestions;
 
 // Open SQL Connection
 const db = mysql.createConnection(
@@ -184,17 +183,45 @@ async function addEmployee() {
 			value: role.id,
 		}));
 
-		// Prompting user for new employee details
-		inquirer.prompt(addEmployeeQuestions).then((result) => {
-			const employeeFirstName = result.employeeFirstName;
-			const employeeLastName = result.employeeLastName;
-			const employeeRole = result.employeeRole;
-			const employeeManagerId = result.employeeManagerId;
+		// Add a new Employee questions
+		const addEmployeeQuestions = [
+			{
+				name: "employeeFirstName",
+				type: "input",
+				message: "Please enter the new employee's first name:",
+			},
+			{
+				name: "employeeLastName",
+				type: "input",
+				message: "Please enter the new employee's last name:",
+			},
+			{
+				name: "employeeRoleId",
+				type: "list",
+				message: roleChoices,
+			},
+			{
+				name: "employeeManagerId",
+				type: "input",
+				message: "Please enter the manager's ID for the new employee:",
+			},
+		];
+		
+		// Prompting user for new employee detail
+		const answers = await inquirer.prompt(addEmployeeQuestions);
 
+		// Inserting the new employee
+		const {
+			employeeFirstName,
+			employeeLastName,
+			employeeRoleId,
+			employeeManagerId,
+		} = answers;
+		
 			// Inserting new employee details into database
 			db.query(
 				"INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)",
-				[employeeFirstName, employeeLastName, employeeRole, employeeManagerId],
+				[employeeFirstName, employeeLastName, employeeRoleId, employeeManagerId],
 				(err, results) => {
 					if (err) {
 						console.error("Error fetching data:", err);
@@ -207,11 +234,10 @@ async function addEmployee() {
 					db.end();
 				}
 			);
-		});
 	} catch (err) {
 		console.error(err);
 	}
-}
+
 
 // Exporting functions to be used in index.js
 module.exports = {
