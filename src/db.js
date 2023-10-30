@@ -170,6 +170,23 @@ function addEmployee() {
 		const employeeLastName = result.employeeLastName;
 		const employeeRole = result.employeeRole;
 		const employeeManagerId = result.employeeManagerId;
+
+		// Inserting new employee details into database
+		db.query(
+			"INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)",
+			[employeeFirstName, employeeLastName, employeeRole, employeeManagerId],
+			(err, results) => {
+				if (err) {
+					console.error("Error fetching data:", err);
+					return;
+				} else {
+					console.log("Successfully added new employee!");
+					console.table(results);
+				}
+				// Closing SQL connection
+				db.end();
+			}
+		);
 	});
 }
 
