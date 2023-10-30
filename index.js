@@ -3,7 +3,6 @@ const inquirer = require("inquirer");
 const utilities = require("./src/utilities.js");
 const promptModule = require("./src/prompt.js");
 const dbQueries = require("./src/db.js");
-const db = require("./src/db.js");
 
 // Global constants & variables
 const choiceMenu = promptModule.choiceMenu;
