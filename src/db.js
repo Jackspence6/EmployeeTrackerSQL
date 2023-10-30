@@ -152,8 +152,10 @@ async function addRole() {
 				if (err) {
 					console.error("Error:", err);
 					return;
+				} else {
+					console.log("Successfully added new role!");
+					console.table(results);
 				}
-				console.log("Successfully added new role!");
 				db.end();
 			}
 		);
@@ -307,8 +309,10 @@ async function updateEmployeeRole() {
 				if (err) {
 					console.error("Error fetching data:", err);
 					return;
+				} else {
+					console.log("Successfully updated employee role!");
+					console.table(results);
 				}
-				console.log("Successfully updated employee role!");
 				// Closing SQL connection
 				db.end();
 			}
