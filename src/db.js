@@ -162,6 +162,16 @@ async function addRole() {
 	}
 }
 
+// Function to fetch roles from the database
+function fetchRoles() {
+	return new Promise((resolve, reject) => {
+		db.query("SELECT id, title FROM role", (err, results) => {
+			if (err) reject(err);
+			else resolve(results);
+		});
+	});
+}
+
 // Function to add a new employee into employee table
 function addEmployee() {
 	try {
