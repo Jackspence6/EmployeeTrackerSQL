@@ -240,6 +240,19 @@ async function addEmployee() {
 	}
 }
 
+// Function to fetch employee names from the database
+async function fetchEmployeeNames() {
+	return new Promise((resolve, reject) => {
+		db.query(
+			"SELECT id, first_name, last_name FROM employee",
+			(err, results) => {
+				if (err) reject(err);
+				else resolve(results);
+			}
+		);
+	});
+}
+
 // Exporting functions to be used in index.js
 module.exports = {
 	viewAllDepartments: viewAllDepartments,
