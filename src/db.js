@@ -5,6 +5,7 @@ const promptModule = require("./prompt.js");
 
 // Global constants & variables
 const addDepartmentQuestion = promptModule.addDepartmentQuestion;
+const addEmployeeQuestions = promptModule.addEmployeeQuestions;
 
 // Open SQL Connection
 const db = mysql.createConnection(
@@ -163,7 +164,13 @@ async function addRole() {
 
 // Function to add a new employee into employee table
 function addEmployee() {
-	
+	// Prompting user for new employee details
+	inquirer.prompt(addEmployeeQuestions).then((result) => {
+		const employeeFirstName = result.employeeFirstName;
+		const employeeLastName = result.employeeLastName;
+		const employeeRole = result.employeeRole;
+		const employeeManagerId = result.employeeManagerId;
+	});
 }
 
 // Exporting functions to be used in index.js
