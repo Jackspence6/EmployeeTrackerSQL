@@ -27,8 +27,33 @@ const addDepartmentQuestion = [
 	},
 ];
 
+// Add a new Employee questions
+const addEmployeeQuestions = [
+	{
+		name: "employeeFirstName",
+		type: "input",
+		message: "Please enter the new employee's first name:",
+	},
+	{
+		name: "employeeLastName",
+		type: "input",
+		message: "Please enter the new employee's last name:",
+	},
+	{
+		name: "employeeRole",
+		type: "input",
+		message: "Please enter the new employee's role:",
+	},
+	{
+		name: "employeeManagerId",
+		type: "input",
+		message: "Please enter the manager's ID for the new employee:",
+	},
+];
+
 // Exports
 module.exports = {
 	choiceMenu: choiceMenu,
 	addDepartmentQuestion: addDepartmentQuestion,
+	addEmployeeQuestions: addEmployeeQuestions,
 };
