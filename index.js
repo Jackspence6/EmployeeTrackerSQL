@@ -3,6 +3,7 @@ const inquirer = require("inquirer");
 const utilities = require("./src/utilities.js");
 const promptModule = require("./src/prompt.js");
 const dbQueries = require("./src/db.js");
+const db = require("./src/db.js");
 
 // Global constants & variables
 const choiceMenu = promptModule.choiceMenu;
@@ -12,6 +13,7 @@ const viewAllEmployees = dbQueries.viewAllEmployees;
 const viewAllRoles = dbQueries.viewAllRoles;
 const addDepartment = dbQueries.addDepartment;
 const addRole = dbQueries.addRole;
+const addEmployee = dbQueries.addEmployee;
 
 // Main function for Application
 function main() {
@@ -36,6 +38,7 @@ function main() {
 					addRole();
 					break;
 				case "Add an Employee":
+					addEmployee();
 					break;
 				case "Update an Employee Role":
 					break;

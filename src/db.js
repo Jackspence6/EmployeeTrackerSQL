@@ -197,4 +197,5 @@ module.exports = {
 	viewAllRoles: viewAllRoles,
 	addDepartment: addDepartment,
 	addRole: addRole,
+	addEmployee: addEmployee,
 };
