@@ -134,6 +134,7 @@ async function addRole() {
 				name: "departmentId",
 				type: "list",
 				message: "Please select the new role's department:",
+				// Department choices
 				choices: departmentChoices,
 			},
 		];
@@ -199,6 +200,7 @@ async function addEmployee() {
 				name: "employeeRoleId",
 				type: "list",
 				message: "Please select the new employee's role:",
+				// Role choices
 				choices: roleChoices,
 			},
 			{
@@ -208,7 +210,7 @@ async function addEmployee() {
 			},
 		];
 
-		// Prompting user for new employee detail
+		// Prompting user for new employee details
 		const answers = await inquirer.prompt(addEmployeeQuestions);
 
 		// Inserting the new employee
@@ -251,6 +253,69 @@ async function fetchEmployeeNames() {
 			}
 		);
 	});
+}
+
+// Function to select & update an employee role
+async function updateEmployeeRole() {
+	try {
+		// Fetching roles from the database
+		const roles = await fetchRoles();
+
+		// Fetching employees from the database
+		const employees = await fetchEmployeeNames();
+
+		// Mapping the roles for Inquirer choices
+		const roleChoices = roles.map((role) => ({
+			name: role.title,
+			value: role.id,
+		}));
+
+		// Mapping the employees for Inquirer choices
+		const employeeChoices = employees.map((employee) => ({
+			name: `${employee.first_name} ${employee.last_name}`,
+			value: employee.id,
+		}));
+
+		// Setting up questions for Inquirer prompt
+		const selectUpdateEmployeeQuestions = [
+			{
+				name: "employeeId",
+				type: "list",
+				message: "Please select the employee whose role you'll be updating:",
+				// Employee choices
+				choices: employeeChoices,
+			},
+			{
+				name: "roleId",
+				type: "list",
+				message: "Please select the new employee's role:",
+				// Role choices
+				choices: roleChoices,
+			},
+		];
+
+		// Prompting the user for their selections
+		const { employeeId, roleId } = await inquirer.prompt(
+			selectUpdateEmployeeQuestions
+		);
+
+		// Updating the selected employee's role in the database
+		db.query(
+			"UPDATE employee SET role_id = ? WHERE id = ?",
+			[roleId, employeeId],
+			(err, results) => {
+				if (err) {
+					console.error("Error fetching data:", err);
+					return;
+				}
+				console.log("Successfully updated employee role!");
+				// Closing SQL connection
+				db.end();
+			}
+		);
+	} catch (err) {
+		console.error("Oops, something went wrong:", err);
+	}
 }
 
 // Exporting functions to be used in index.js
