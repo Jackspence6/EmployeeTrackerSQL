@@ -56,4 +56,4 @@ MIT
 ## Contact
 
 - GitHub: [Jackspence6](https://github.com/Jackspence6)
-- Email: jackspence123456@gmail.com
+- Email: jackspence.dev@gmail.com
